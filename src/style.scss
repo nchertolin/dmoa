@@ -1,0 +1,518 @@
+$body-width: min(90vw, 2200px);
+$accent-color: #B50938;
+$light-text-color: white;
+$dark-text-color: black;
+$second-dark-text-color: rgba(0, 0, 0, 0.5);
+
+@mixin centred-flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin centred-flex-column {
+  @include centred-flex-row;
+  flex-direction: column;
+}
+
+:root {
+  font-family: Gilroy, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color-scheme: light dark;
+  color: $light-text-color;
+  background-color: $light-text-color;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  font-family: "Gilroy", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+h3, p {
+  font-size: 20px;
+}
+
+.content {
+  width: $body-width;
+  margin: 0 auto;
+}
+
+.main__title, .second__title {
+  font-family: "ITC Avant Garde Gothic Demi", sans-serif;
+  font-size: 128px;
+  line-height: .9;
+  text-wrap: balance;
+}
+
+.second__title {
+  font-size: 100px;
+}
+
+.main__title.dark, .second__title.dark {
+  color: $dark-text-color;
+}
+
+.main__button {
+  padding: 18px 32px;
+  border: 1px solid $light-text-color;
+  color: $light-text-color;
+  text-transform: uppercase;
+  transition: .3s;
+
+  svg {
+    fill: $light-text-color;
+  }
+
+  &.dark {
+    border-color: $dark-text-color;
+    color: $dark-text-color;
+
+    svg {
+      fill: $dark-text-color;
+    }
+
+    &:hover {
+      color: $light-text-color;
+      background-color: $dark-text-color;
+
+      svg {
+        fill: $light-text-color;
+      }
+    }
+  }
+
+  &:hover {
+    color: $dark-text-color;
+    background-color: $light-text-color;
+
+    svg {
+      fill: $dark-text-color;
+    }
+  }
+}
+
+.page-header {
+  position: sticky;
+  width: $body-width;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  margin: 40px auto 0;
+  z-index: 1;
+
+  &.dark {
+    a, p {
+      color: $dark-text-color
+    }
+  }
+}
+
+.dark__text {
+  color: $dark-text-color
+}
+
+.page-header nav {
+  display: flex;
+  column-gap: 30px;
+}
+
+.page-header nav a {
+  color: $light-text-color;
+  text-transform: uppercase;
+
+  &.active {
+    color: $accent-color;
+  }
+}
+
+.page-header__logo {
+  font-family: 'ITC Avant Garde Gothic Demi', sans-serif;
+  font-size: 24px;
+}
+
+.page-hero {
+  width: 100vw;
+  height: 100vh;
+  transform: translateY(-96px);
+  overflow: hidden;
+}
+
+.layers {
+  @include centred-flex-row;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .content {
+    position: absolute;
+    height: 100%;
+  }
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(.7);
+  will-change: transform;
+}
+
+.layer__front {
+  z-index: 1;
+}
+
+.hero__title {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  max-width: 50%;
+}
+
+.hero__text {
+  position: absolute;
+  bottom: 5%;
+  right: 0;
+  z-index: 1;
+}
+
+.home__block-1 {
+  @include centred-flex-row;
+  padding: 200px 0;
+}
+
+.home__block-1__wrapper {
+  @include centred-flex-column;
+  align-items: flex-end;
+  row-gap: 80px;
+  max-width: min(60%, 1400px);
+}
+
+.home__block-2 {
+  position: relative;
+  background-color: $dark-text-color;
+  padding: 400px 0 250px;
+  overflow: clip;
+}
+
+.home__block-2__circle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: calc($body-width * 0.35);
+  height: calc($body-width * 0.35);
+  transform: translate(-50%, -60%);
+  border-radius: 50%;
+  background-color: $light-text-color;
+}
+
+.home__block-2 .content {
+  height: 110vh;
+  position: relative;
+
+  .second__title {
+    max-width: 60%;
+  }
+
+  button {
+    @include centred-flex-row;
+    column-gap: 10px;
+    margin-top: 60px;
+  }
+
+  img {
+    width: 600px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.page-footer {
+  background-color: $dark-text-color;
+  padding: 160px 0;
+}
+
+.page-footer .main__title {
+  text-align: right;
+  font-size: 160px;
+}
+
+.page-footer .content {
+  @include centred-flex-row;
+  justify-content: space-between;
+  column-gap: 150px;
+}
+
+.page-footer__left-block {
+  display: flex;
+  flex-direction: column;
+  row-gap: 60px;
+}
+
+.page-footer__left-block nav {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  text-transform: uppercase;
+  font-size: 40px;
+}
+
+.page-footer__left-block a {
+  color: $light-text-color
+}
+
+.page-footer__left-block button {
+  @include centred-flex-row;
+  text-transform: lowercase;
+  text-wrap: balance;
+  font-family: "ITC Avant Garde Gothic Demi", sans-serif;
+  font-size: 40px;
+}
+
+.page-artworks {
+  padding: 200px 0;
+}
+
+.artworks__left-block {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  width: 55%;
+
+  p {
+    text-wrap: balance;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+}
+
+.page-artworks form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 30px;
+  margin-top: 60px;
+}
+
+.artworks__search {
+  position: relative;
+  width: 100%;
+
+  svg {
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+  }
+}
+
+.artworks__search-input {
+  width: 100%;
+  padding: 20px 40px 20px 0;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 18px;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid $second-dark-text-color;
+  outline: none;
+  color: $dark-text-color
+}
+
+.artworks__filters-button {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  color: $second-dark-text-color;
+}
+
+
+.artworks-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+  margin: 150px 0;
+}
+
+.artwork-card-skeleton {
+  height: min(50vh, 500px);
+}
+
+.artwork-card-skeleton__image {
+  height: 90%;
+}
+
+.artwork-card {
+  width: 100%;
+  cursor: pointer;
+  transition: .3s;
+
+  img {
+    width: 100%;
+  }
+}
+
+.artwork-card:hover {
+  img {
+    transition: .3s;
+    transform: scale(1.02);
+  }
+
+  .artwork-card__title {
+    color: $accent-color;
+  }
+
+}
+
+.artwork-card__info {
+  margin-top: 20px;
+}
+
+.artwork-card__title {
+  font-family: 'ITC Avant Garde Gothic Demi', sans-serif;
+  font-size: 26px;
+  color: $dark-text-color;
+  text-wrap: balance;
+}
+
+.artwork-card__artist {
+  font-size: 20px;
+  color: $second-dark-text-color;
+  margin-top: 5px;
+}
+
+.artworks__pagination {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+
+  button, p {
+    font-family: "ITC Avant Garde Gothic Demi", sans-serif;
+    color: black;
+  }
+}
+
+.artworks__pagination__list {
+  display: flex;
+  column-gap: 5px;
+
+  button, p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid $second-dark-text-color;
+  }
+
+  button.active {
+    border: 0;
+    background-color: $accent-color;
+    color: $light-text-color;
+  }
+}
+
+.artwork-page.content {
+  padding: 50px 0 250px;
+  color: $dark-text-color;
+  min-height: 100vh;
+}
+
+.artwork-page__flexbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 150px;
+  margin-top: 100px;
+
+  .main__text {
+    margin-top: 40px;
+  }
+
+}
+
+.artwork-page__image {
+  width: 100%;
+}
+
+.artwork-page__navigation {
+  display: flex;
+  column-gap: 10px;
+  min-width: 15%;
+
+  p {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 18px;
+    font-weight: 500;
+    color: $second-dark-text-color;
+  }
+}
+
+.artwork-page__left-block button {
+  @include centred-flex-row;
+  column-gap: 10px;
+}
+
+.artwork-page__info-skeleton {
+  margin: 60px 0;
+}
+
+.artwork-page__info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 60px 0;
+
+  h3 {
+    font-weight: 500;
+    color: $second-dark-text-color;
+  }
+}
+
+.artwork-page__image {
+  &.skeleton {
+    height: min(60vh, 800px);
+  }
+}
+
+.artwork-page__navigation-skeleton {
+  width: 15%;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+  }
+}
